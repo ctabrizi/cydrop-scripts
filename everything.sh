@@ -48,8 +48,8 @@ checkpoint "2: Ran 'access.sh' okay? (*/n)"
 #----------------------------------------------
 # Run website.sh from cyrus
 
-ssh $NEW_USER@$IP_ADDRESS "cd scripts && bash website.sh"
-checkpoint "3: Ran 'website.sh' okay? (*/n)"
+# ssh $NEW_USER@$IP_ADDRESS "cd scripts && bash website.sh"
+# checkpoint "3: Ran 'website.sh' okay? (*/n)"
 
 
 
