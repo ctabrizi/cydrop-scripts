@@ -31,14 +31,14 @@ checkpoint "0: Look okay?"
 #----------------------------------------------
 # Get password for Github account
 echo "Type in password for Github account: " $GIT_USER
-read -s USER_PASSWORD
+read -s GIT_PASSWORD
 
 # Confirm user password
 echo "Okay, now confirm password for " $GIT_USER
 read -s DOUBLE_CHECK_1
 
 # Double check passwords
-if [ "$USER_PASSWORD" != "$DOUBLE_CHECK_1" ]; then
+if [ "$GIT_PASSWORD" != "$DOUBLE_CHECK_1" ]; then
     echo "Passwords didn't match. Aborting"
     exit 1
 fi
@@ -53,7 +53,7 @@ c3="rm -rf scripts"
 c4="mkdir scripts"
 c5="cd scripts"
 c6="sudo apt-get install git"
-c7="git clone https://$GIT_USER:$USER_PASSWORD@github.com/$GIT_USER/$REPO_NAME.git ."
+c7="git clone https://$GIT_USER:$GIT_PASSWORD@github.com/$GIT_USER/$REPO_NAME.git ."
 
  ssh $SSH_ADDRESS "$c1 && $c2 && $c3 && $c4 && $c5 && $c6 && $c7"
 

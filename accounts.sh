@@ -19,9 +19,11 @@ function checkpoint {
 # Make sure we're starting correctly
 
 echo "[accounts.sh] starting!"
+
 echo "in this directory: $(pwd)"
 NEW_USER="$1"
 echo "for new user: $NEW_USER"
+
 checkpoint "0: Look okay?"
 
 #----------------------------------------------
@@ -126,6 +128,10 @@ sudo sed -i -e 's/PasswordAuthentication no/Match User frontdoor\n\tPasswordAuth
 # Reload the SSH file
 sudo systemctl reload sshd
 checkpoint "11: Changed SSHD access settings and reloaded"
+
+#----------------------------------------------
+# Return to console
+mv ~/scripts >> /home/$NEW_USER
 
 #----------------------------------------------
 # Return to console
