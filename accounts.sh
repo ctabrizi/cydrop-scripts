@@ -74,8 +74,8 @@ ufw enable
 checkpoint "4: Enabled SSH through Firewall"
 
 # Create new accounts
-adduser —gecos ",,,," —disabled-password $NEW_USER
-adduser —gecos ",,,," —disabled-password frontdoor 
+adduser --gecos ",,,," --disabled-password $NEW_USER
+adduser --gecos ",,,," --disabled-password frontdoor 
 checkpoint "5: Created accounts"
 
 # Create account passwords
@@ -112,12 +112,15 @@ cat /home/frontdoor/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 checkpoint "10: Copied the keys around"
 
 #----------------------------------------------
+# Copy SSHD config
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+
 # Disable all logins for root account
 # It can only be SSH'd into by the new user and Front Door
 sudo sed -i -e 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 
 # Disable password access for everyone except the Front Door
-sudo sed -i -e 's/#PasswordAuthentication yes/PasswordAuthentication no\nMatch User frontdoor\n\tPasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo sed -i -e 's/PasswordAuthentication no/Match User frontdoor\n\tPasswordAuthentication yes\nMatch all\n\tPasswordAuthentication no/g' /etc/ssh/sshd_config
 
 # Reload the SSH file
 sudo systemctl reload sshd
