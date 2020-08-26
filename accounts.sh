@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# To run this script:
+# Run this script from "root":
 # bash accounts.sh [NEW_USER]
 
 #----------------------------------------------
@@ -13,7 +13,7 @@ function checkpoint {
     	echo "Logging out!"
     	exit 1
     fi
-}  
+}
 
 #----------------------------------------------
 # Make sure we're starting correctly
@@ -27,15 +27,11 @@ checkpoint "0: Look okay?"
 #----------------------------------------------
 # Get user password
 echo "Type in a CONVENIENT password for " $NEW_USER
-stty -echo
 read -s USER_PASSWORD
-stty echo
 
 # Confirm user password
 echo "Okay, now confirm the password for " $NEW_USER
-stty -echo
 read -s DOUBLE_CHECK_1
-stty echo
 
 # Double check passwords
 if [ "$USER_PASSWORD" != "$DOUBLE_CHECK_1" ]; then
@@ -45,16 +41,12 @@ fi
 
 #----------------------------------------------
 # Get user password
-echo "Type in a CONVENIENT password for the Front Door"
-stty -echo
+echo "Type in a SUPER LONG password for the Front Door"
 read -s FRONT_DOOR_PASSWORD
-stty echo
 
 # Confirm user password
 echo "Okay, now confirm the password for the Front Door "
-stty -echo
 read -s DOUBLE_CHECK_2
-stty echo
 
 # Double check passwords
 if [ "$FRONT_DOOR_PASSWORD" != "$DOUBLE_CHECK_2" ]; then
@@ -65,7 +57,7 @@ fi
 #----------------------------------------------
 # SSH into the machine
 # Will prompt user for private key password
-checkpoint "1: Passwords entered correctly"
+checkpoint "1: Passwords entered correctly!"
 
 # Automated system upgrade
 apt update

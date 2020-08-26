@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# To run this script:
-# bash website.sh [NEW_USER] [REPO_URL]
+# Run this script from "NEW_USER":
+# bash website.sh
 
 #----------------------------------------------
 # Functions
+
 function checkpoint {
     echo "--> Reached checkpoint $1"
     read CONTINUE
@@ -20,8 +21,6 @@ function checkpoint {
 
 echo "[website.sh] starting!"
 echo "in this directory: $(pwd)"
-NEW_USER="$1"
-echo "for new user: $NEW_USER"
 checkpoint "0: Look okay?"
 
 

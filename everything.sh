@@ -1,14 +1,16 @@
 #!/bin/bash
 
 # To run this script:
-# bash everything.sh [IP_ADDRESS] [NEW_USER]
+# bash everything.sh [IP_ADDRESS] [NEW_USER] [GIT_USER] [REPO_NAME]
 
 IP_ADDRESS=$1
 NEW_USER=$2
-REPO_URL=$3
+GIT_USER=$3
+REPO_NAME=$4
 
 #----------------------------------------------
 # Functions
+
 function checkpoint {
     echo "--> Reached checkpoint $1"
     read CONTINUE
@@ -24,20 +26,17 @@ function checkpoint {
 
 echo "[everything.sh] starting!"
 echo "setting up server at IP: " $IP_ADDRESS
-echo "for new user: " $NEW_USER
-echo "with repo: " $REPO_URL
+echo "for new account named: "   $NEW_USER
+echo "using Github repo: "       $REPO_NAME
+echo "signed in as: "            $GIT_USER
+
 checkpoint "0: Look okay? (*/n)"
 
 #----------------------------------------------
-# Install Git + Clone scripts repo
+# Install Git + Clone scripts repo from Github
 
-ssh root@$IP_ADDRESS << EOF
-	mkdir scripts
-	cd scripts
-	sudo apt-get install git
-	git clone $REPO_URL .
-EOF
-checkpoint "1: Installed repo? (*/n)"
+bash github.sh "root@$IP_ADDRESS" $GIT_USER $REPO_NAME
+checkpoint "1: Ran 'github.sh' okay? (*/n)"
 
 #----------------------------------------------
 # Run access.sh from root
