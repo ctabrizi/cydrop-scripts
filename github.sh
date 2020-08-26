@@ -49,9 +49,11 @@ checkpoint "1: Passwords entered correctly!"
 
 c1="export HISTCONTROL=ignorespace"
 c2="mkdir -p scripts"
-c3="cd scripts"
-c4="sudo apt-get install git"
-c5="git clone https://$GIT_USER:$USER_PASSWORD@github.com/$GIT_USER/$REPO_NAME.git ."
+c3="rm -rf scripts"
+c4="mkdir scripts"
+c5="cd scripts"
+c6="sudo apt-get install git"
+c7="git clone https://$GIT_USER:$USER_PASSWORD@github.com/$GIT_USER/$REPO_NAME.git ."
 
  ssh $SSH_ADDRESS "$c1 && $c2 && $c3 && $c4 && $c5"
 
