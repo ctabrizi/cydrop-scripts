@@ -111,7 +111,8 @@ rm ~/.ssh/authorized_keys
 # so that it can SSH into root
 cat /home/$NEW_USER/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-# Same thing with the Front Door
+# Copy frontdoor's key into new user
+# so that it can SSH into new user
 cat /home/frontdoor/.ssh/id_rsa.pub >> /home/$NEW_USER/.ssh/authorized_keys
 checkpoint "10: Copied the keys around"
 
