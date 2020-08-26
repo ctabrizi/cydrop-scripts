@@ -21,6 +21,7 @@ function checkpoint {
 
 echo "[website.sh] starting!"
 
+cd ~
 echo "in this directory: $(pwd)"
 GIT_USER="$1"
 DOMAIN="$2"

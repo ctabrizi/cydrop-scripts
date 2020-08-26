@@ -131,7 +131,7 @@ checkpoint "11: Changed SSHD access settings and reloaded"
 
 #----------------------------------------------
 # Return to console
-mv ~/scripts >> /home/$NEW_USER
+mv ~/scripts /home/$NEW_USER
 
 #----------------------------------------------
 # Return to console

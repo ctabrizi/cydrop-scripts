@@ -51,9 +51,9 @@ checkpoint "2: Ran 'access.sh' okay? (*/n)"
 #----------------------------------------------
 # Run website.sh from [NEW_USER]@[IP_ADDRESS]
 
-source ENV_FILE
+source "$ENV_FILE"
 
-ssh -t $NEW_USER@$IP_ADDRESS "bash website.sh $GIT_USER $DOMAIN $DO_API_KEY"
+ssh -t $NEW_USER@$IP_ADDRESS "cd scripts && bash website.sh $GIT_USER $DOMAIN $DO_API_KEY"
 checkpoint "3: Ran 'website.sh' okay? (*/n)"
 
 
