@@ -27,8 +27,8 @@ GIT_USER="$1"
 DOMAIN="$2"
 DO_API_KEY="$3"
 USER=$(whoami)
-echo "using Github user: $GIT_USER"
-echo "installing this domain: $DOMAIN"
+echo "using Github user:       $GIT_USER"
+echo "installing this domain:  $DOMAIN"
 echo "while logged in as user: $USER"
 
 checkpoint "0: Look okay?"

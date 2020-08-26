@@ -28,11 +28,11 @@ function checkpoint {
 
 echo "[everything.sh] starting!"
 
-echo "setting up server at IP: "   $IP_ADDRESS
-echo "for new user named: "        $NEW_USER
-echo "using Github repo: "         $REPO_NAME
-echo "with this Git credential: "  $GIT_USER
-echo "setting up this domain: "    $DOMAIN
+echo "setting up server at IP:     $IP_ADDRESS"
+echo "for new user named:          $NEW_USER"
+echo "using Github repo:           $REPO_NAME"
+echo "with this Git credential:    $GIT_USER"
+echo "setting up this domain:      $DOMAIN"
 
 checkpoint "0: Look okay? (*/n)"
 

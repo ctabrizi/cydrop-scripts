@@ -23,9 +23,9 @@ SSH_ADDRESS="$1"
 GIT_USER="$2"
 REPO_NAME="$3"
 
-echo "going to instal this repo: $REPO_NAME"
-echo "at this address: $SSH_ADDRESS" 
-echo "using Github user: $GIT_USER"
+echo "going to install this repo: $REPO_NAME"
+echo "at this address:            $SSH_ADDRESS" 
+echo "using Github user:          $GIT_USER"
 checkpoint "0: Look okay?"
 
 #----------------------------------------------
