@@ -41,7 +41,7 @@ checkpoint "1: Ran 'github.sh' okay? (*/n)"
 #----------------------------------------------
 # Run access.sh from root
 
-ssh root@$IP_ADDRESS "cd scripts && bash accounts.sh $NEW_USER"
+ssh -t root@$IP_ADDRESS "cd scripts && bash accounts.sh $NEW_USER"
 checkpoint "2: Ran 'access.sh' okay? (*/n)"
 
 #----------------------------------------------

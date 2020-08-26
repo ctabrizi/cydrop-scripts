@@ -74,8 +74,8 @@ ufw enable
 checkpoint "4: Enabled SSH through Firewall"
 
 # Create new accounts
-adduser $NEW_USER —gecos ",,,," —disabled-password
-adduser frontdoor —gecos ",,,," —disabled-password
+adduser —gecos ",,,," —disabled-password $NEW_USER
+adduser —gecos ",,,," —disabled-password frontdoor 
 checkpoint "5: Created accounts"
 
 # Create account passwords
