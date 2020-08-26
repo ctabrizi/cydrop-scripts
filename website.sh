@@ -56,9 +56,9 @@ checkpoint "1: Passwords entered correctly!"
 
 #----------------------------------------------
 # Clone website repo
-git clone https://$GIT_USER:$GIT_PASSWORD@github.com/$GIT_USER/$DOMAIN.git
-sudo mv cyrustabrizi.com/* /var/www/html
-checkpoint "2: Cloned repo."
+sudo rm -rf /var/www/html
+git clone https://$GIT_USER:$GIT_PASSWORD@github.com/$GIT_USER/$DOMAIN.git /var/www/html
+checkpoint "2: Cloned website repo to /var/www/html"
 
 #----------------------------------------------
 # Enable firewall
