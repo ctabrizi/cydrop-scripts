@@ -112,7 +112,7 @@ rm ~/.ssh/authorized_keys
 cat /home/$NEW_USER/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 # Same thing with the Front Door
-cat /home/frontdoor/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+cat /home/frontdoor/.ssh/id_rsa.pub >> /home/$NEW_USER/.ssh/authorized_keys
 checkpoint "10: Copied the keys around"
 
 #----------------------------------------------
