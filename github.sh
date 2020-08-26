@@ -55,7 +55,7 @@ c5="cd scripts"
 c6="sudo apt-get install git"
 c7="git clone https://$GIT_USER:$USER_PASSWORD@github.com/$GIT_USER/$REPO_NAME.git ."
 
- ssh $SSH_ADDRESS "$c1 && $c2 && $c3 && $c4 && $c5"
+ ssh $SSH_ADDRESS "$c1 && $c2 && $c3 && $c4 && $c5 && $c6 && $c7"
 
 checkpoint "2: Installed repo? (*/n)"
 

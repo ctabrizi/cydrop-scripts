@@ -98,10 +98,14 @@ echo -ne "\n" | su -c ssh-keygen frontdoor
 echo -ne "\n" | su -c ssh-keygen $NEW_USER
 checkpoint "9: Made new keys for everyone"
 
+#----------------------------------------------
 # Copy root's public key to other users
 # so that root can SSH into them
 cat ~/.ssh/id_rsa.pub >> /home/frontdoor/.ssh/authorized_keys
 cat ~/.ssh/id_rsa.pub >> /home/$NEW_USER/.ssh/authorized_keys
+
+# Remove external device keys from root
+rm ~/.ssh/authorized_keys
 
 # Copy new user's key into root
 # so that it can SSH into root
@@ -115,10 +119,6 @@ checkpoint "10: Copied the keys around"
 # Copy SSHD config
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 
-# Disable all logins for root account
-# It can only be SSH'd into by the new user and Front Door
-sudo sed -i -e 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
-
 # Disable password access for everyone except the Front Door
 sudo sed -i -e 's/PasswordAuthentication no/Match User frontdoor\n\tPasswordAuthentication yes\nMatch all\n\tPasswordAuthentication no/g' /etc/ssh/sshd_config
 
@@ -128,5 +128,5 @@ checkpoint "11: Changed SSHD access settings and reloaded"
 
 #----------------------------------------------
 # Return to console
-logout
+exit
 echo "[accounts.sh] Completed successfully"
