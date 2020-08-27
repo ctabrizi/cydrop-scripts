@@ -53,8 +53,10 @@ checkpoint "2: Ran 'access.sh' okay? (*/n)"
 
 source "$ENV_FILE"
 
-ssh -t $NEW_USER@$IP_ADDRESS "cd scripts && bash website.sh $GIT_USER $DOMAIN $DO_API_KEY"
-checkpoint "3: Ran 'website.sh' okay? (*/n)"
+ssh -t $NEW_USER@$IP_ADDRESS "cd scripts && bash website-1.sh $GIT_USER $DOMAIN $DO_API_KEY"
+checkpoint "3: Ran 'website-1.sh' okay? (*/n)"
+
+checkpoint "4: Now you need to run 'website-2.sh' by hand!"
 
 
 

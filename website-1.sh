@@ -57,7 +57,7 @@ checkpoint "1: Passwords entered correctly!"
 #----------------------------------------------
 # Clone website repo
 sudo rm -rf /var/www/html
-git clone https://$GIT_USER:$GIT_PASSWORD@github.com/$GIT_USER/$DOMAIN.git /var/www/html
+sudo git clone https://$GIT_USER:$GIT_PASSWORD@github.com/$GIT_USER/$DOMAIN.git /var/www/html
 checkpoint "2: Cloned website repo to /var/www/html"
 
 #----------------------------------------------
@@ -101,58 +101,16 @@ checkpoint "6: Fixed Certbot permissions"
 
 #----------------------------------------------
 # add API key for automatic verification
-mkdir .secrets
+mkdir -p .secrets
 cd .secrets
 
 DO_API_STRING="dns_digitalocean_token = $DO_API_KEY"
-cat $DO_API_STRING >> digitalocean.ini
+echo "$DO_API_STRING" >> digitalocean.ini
 #file just contains
 #dns_digitalocean_token = [the personal token]
 #https://cloud.digitalocean.com/account/api/tokens
 chmod 600 digitalocean.ini
 cd ..
-checkpoint "7: Made secrete key file for Digital Ocean API token"
+checkpoint "7: Made secret key file for Digital Ocean API token"
 
-#----------------------------------------------
-# Install more certbot things
-cd /opt/eff.org/certbot/venv
-sudo su
-source bin/activate
-pip install --upgrade pip
-pip install certbot-dns-digitalocean
-su $NEW_USER
-cd ~
-checkpoint "8: Installed DNS API"
-
-#----------------------------------------------
-# Check that it's working
-sudo certbot-auto plugins
-checkpoint "9: The plugins look okay? (*/n)"
-
-#----------------------------------------------
-# Generate certificates
-
-checkpoint "Now time to run certbot-auto\n..look carefully!"
-sudo certbot-auto -i nginx --server https://acme-v02.api.letsencrypt.org/directory --preferred-challenges dns -d '*.cyrustabrizi.com' -d 'cyrustabrizi.com' --dns-digitalocean --dns-digitalocean-credentials .secrets/digitalocean.ini --dns-digitalocean-propagation-seconds 240
-# then enter
-# 1
-# nginx: [error] invalid PID number "" in "/run/nginx.pid"
-# 
-checkpoint "10: Finished running certbot. Continue? (*/n)"
-
-sudo systemctl status nginx
-
-# sudo netstat -tulpn
-# sudo fuser -k 80/tcp
-# sudo fuser -k 443/tcp
-
-#sudo systemctl restart nginx
-
-# sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/example.conf
-# sudo cp nginx.conf /etc/nginx/sites-enabled/default
-
-#----------------------------------------------
-# Return to console
-exit
-echo "[website.sh] Completed successfully"
-
+echo "[website-1.sh] Completed successfully. The rest you need to do manually"
